@@ -1,0 +1,7 @@
+name = "TensorOperationsCore"
+uuid = "46150444-48fb-4c36-b392-fdd2916ece7e"
+authors = ["Jutho Haegeman, "Maarten Van Damme", "Lukas Devos"]
+version = "0.1.0"
+
+[deps]
+VectorInterface = "409d34a3-91d5-4945-b6ec-7529ddf182d8"
