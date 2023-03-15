@@ -61,9 +61,28 @@ function tensoralloc(TC, pC, A, iA, conjA, B, iB, conjB)
 end
 
 """
-    tensorfree(C)
+    tensoralloctemp(TC, pC, A, conjA)
+    tensoralloctemp(TC, pC, A, iA, conjA, B, iB, conjB)
+
+Allocate memory for an intermediary tensor, with indices `pC` and scalartype `TC` based on
+the indices of `opA(A)`, or based on indices `iA` of `opA(A)` and `iB` of `opB(B)`. The
+operation `opA` (`opB`) acts as `conj` if `conjA` (`conjB`) equals `:C` or as the identity
+if `conjA` (`conjB`) equals `:N`.
+"""
+function tensoralloctemp(TC, pC, A, conjA)
+    return tensoralloctemp(allocatetempbackend(typeof(A)), TC, pC, A, conjA)
+end
+function tensoralloctemp(TC, pC, A, iA, conjA, B, iB, conjB)
+    return tensoralloctemp(allocatetempbackend(typeof(A)),
+                           TC, pC,
+                           A, iA, conjA,
+                           B, iB, conjB)
+end
+
+"""
+    tensorfree!(C)
 
 Release the allocated memory of `C`.
 """
-function tensorfree end
-tensorfree(C) = tensorfree(allocatebackend(typeof(C)), C)
+function tensorfree! end
+tensorfree!(C) = tensorfree!(allocatebackend(typeof(C)), C)
