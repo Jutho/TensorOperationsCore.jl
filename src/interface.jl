@@ -86,3 +86,19 @@ Release the allocated memory of `C`.
 """
 function tensorfree! end
 tensorfree!(C) = tensorfree!(allocatebackend(typeof(C)), C)
+
+"""
+    tensorcost(A, i)
+    
+Computes the contraction cost associated with the `i`th index of a tensor, such that the
+total cost of a pairwise contraction is found as the product of the costs of all contracted
+indices and all uncontracted indices.
+"""
+function tensorcost end
+
+"""
+    checkcontractible(A, iA, conjA, B, iB, conjB, label)
+Verifies whether two tensors `A` and `B` are compatible for contraction, and throws an error
+if not.
+"""
+function checkcontractible end

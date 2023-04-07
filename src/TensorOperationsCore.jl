@@ -19,6 +19,7 @@ include("backends.jl")
 using VectorInterface: scalartype
 export tensoradd!, tensorcontract!, tensortrace!, tensorscalar, scalartype
 export tensoralloc, tensoralloctemp, tensorfree!
+export tensorcost, checkcontractible
 
 include("interface.jl")
 
