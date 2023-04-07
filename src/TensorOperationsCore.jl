@@ -4,7 +4,7 @@ module TensorOperationsCore
 # Backends
 # ---------------------------------------------------------------------------------------- #
 
-export Backend
+export Backend, DefaultBackend
 export contractbackend, contractbackend!
 export addbackend, addbackend!
 export tracebackend, tracebackend!

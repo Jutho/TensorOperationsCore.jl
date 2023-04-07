@@ -5,12 +5,14 @@ Supertype for selecting different implementation backends for this interface.
 """
 abstract type Backend end
 
+struct DefaultBackend <: Backend end
+
 """
     contractbackend(tensortype)
 
 Get the default backend used for the contraction of two tensors.
 """
-function contractbackend end
+contractbackend(args...) = DefaultBackend()
 
 """
     contractbackend!(backend, tensortype)
@@ -26,7 +28,7 @@ end
 
 Get the default backend used for the addition of two tensors.
 """
-function addbackend end
+addbackend(args...) = DefaultBackend()
 
 """
     addbackend!(backend, tensortype)
@@ -42,10 +44,10 @@ end
 
 Get the default backend used for the partial trace of a tensor
 """
-function tracebackend end
+tracebackend(args...) = DefaultBackend()
 
 """
-    tracebackend(backend, tensortype)
+    tracebackend!(backend, tensortype)
 
 Set the default backend used for the partial trace of a tensor
 """
@@ -58,10 +60,10 @@ end
 
 Get the default backend for the allocation of a tensor.
 """
-function allocatebackend end
+allocatebackend(args...) = DefaultBackend()
 
 """
-    allocatebackend(backend, tensortype)
+    allocatebackend!(backend, tensortype)
 
 Set the default backend used for the allocation of a tensor.
 """
@@ -74,10 +76,10 @@ end
 
 Get the default backend for the allocation of a temporary tensor.
 """
-function allocatetempbackend end
+allocatetempbackend(args...) = DefaultBackend()
 
 """
-    allocatetempbackend(backend, tensortype)
+    allocatetempbackend!(backend, tensortype)
 
 Set the default backend used for the allocation of a temporary tensor.
 """
