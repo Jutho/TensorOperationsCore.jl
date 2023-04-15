@@ -19,7 +19,8 @@ abstract type AbstractBackend end
 
 using VectorInterface: scalartype
 export tensoradd!, tensorcontract!, tensortrace!, tensorscalar, scalartype
-export tensorstructure, tensoralloc, tensoralloctemp, tensorfree!
+export tensorstructure, tensoradd_structure, tensoradd_type, tensorcontract_structure,
+       tensorcontract_type, tensoralloc, tensorfree!
 export tensorcost, checkcontractible
 
 include("interface.jl")

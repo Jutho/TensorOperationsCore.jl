@@ -53,26 +53,44 @@ Obtain the information associated to indices `iA` of tensor `op(A)`, where `op` 
 function tensorstructure end
 
 """
-    tensoralloc(backend, TC, pC, A, conjA)
-    tensoralloc(backend, TC, pC, A, iA, conjA, B, iB, conjB)
+    tensoradd_structure(A, pA, conjA)
 
-Allocate memory for a tensor with indices `pC` and scalartype `TC` based on the indices of
-`opA(A)`, or based on indices `iA` of `opA(A)` and `iB` of `opB(B)`. The operation `opA` 
-(`opB`) acts as `conj` if `conjA` (`conjB`) equals `:C` or as the identity if `conjA`
-(`conjB`) equals `:N`.
+Obtain the structure information of `C`, where `C` would be the output of
+`tensoradd!(C, A, pA, conjA)`.
+"""
+function tensoradd_structure(A, pA, conjA) end
+
+"""
+    tensorcontract_structure(pC, A, pA, conjA, B, pB, conjB)
+
+Obtain the structure information of `C`, where `C` would be the output of
+`tensorcontract!(C, pC, A, pA, conjA, B, pB, conjB)`.
+"""
+function tensorcontract_structure(pC, A, pA, conjA, B, pB, conjB) end
+
+"""
+    tensoradd_type(TC, A, pA, conjA)
+
+Obtain `typeof(C)`, where `C` is the result of `tensoradd!(C, A, pA, conjA)` with scalartype
+`TC`.
+"""
+function tensoradd_type(TC, A, pA, conjA) end
+
+"""
+    tensorcontract_type(TC, pC, A, pA, conjA, B, pB, conjB)
+
+Obtain `typeof(C)`, where `C` is the result of
+`tensorcontract!(C, pC, A, pA, conjA, B, pB, conjB)` with scalartype `TC`.
+"""
+function tensorcontract_type(TC, pC, A, pA, conjA, B, pB, conjB) end
+
+"""
+    tensoralloc(backend, ttype, structure, istemp=false)
+
+Allocate memory for a tensor of type `ttype` and structure `structure`, optionally
+distinguishing between temporary intermediate tensors.
 """
 function tensoralloc end
-
-"""
-    tensoralloctemp(backend, TC, pC, A, conjA)
-    tensoralloctemp(backend, TC, pC, A, iA, conjA, B, iB, conjB)
-
-Allocate memory for an intermediary tensor, with indices `pC` and scalartype `TC` based on
-the indices of `opA(A)`, or based on indices `iA` of `opA(A)` and `iB` of `opB(B)`. The
-operation `opA` (`opB`) acts as `conj` if `conjA` (`conjB`) equals `:C` or as the identity
-if `conjA` (`conjB`) equals `:N`.
-"""
-function tensoralloctemp end
 
 """
     tensorfree!(backend, C)
